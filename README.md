@@ -1,52 +1,51 @@
-# Snippet Library for Teams
+# Snippet Library For Teams
 
-## Solution Summary
-Production-ready domain application.
+## Phase 3 Upgrade Summary
+Production-oriented community solution for snippet library for teams workflows.
 
-This Phase-2 implementation is a domain-ready, deployable web application for **Social & Community** workflows.
+## Domain Context
+- Domain: **Community**
+- Core Entity: **Community Program**
+- Lifecycle Statuses: `proposed, open, running, archived`
 
-## Core Capabilities
-- Responsive dashboard with KPI cards and recent activity table
-- Domain record lifecycle with full CRUD (web + API)
-- Dynamic schema fields tailored to this use case
-- Status pipeline: `proposed, open, running, archived`
-- Docker + Gunicorn deployment assets, CI checks, and Pytest tests
+## Architecture
+- Flask application factory pattern (`app/__init__.py`)
+- Layered backend (`routes` → `services` → `repositories`)
+- SQLAlchemy persistence with JSON payload modeling
+- REST API + HTML dashboard + CSV exports
+- Deployment surfaces (`Dockerfile`, `docker-compose.yml`, `Procfile`, `wsgi.py`)
 
-## Domain Model
-- Primary entity: **Snippet Library Community Event**
-- Collection: **Snippet Library Community Events**
-- Dynamic fields:
+## Capability Set
+- Role-ready modular architecture (routes, services, repositories)
+- Operational dashboard with status metrics and pipeline view
+- CRUD workflows via web UI and REST API
+- CSV export endpoint for reporting
+- Ready for production via Gunicorn, Docker, and Procfile
+
+## Dynamic Schema
 - Host (`host` / text)
-- Expected Attendees (`attendees` / number)
+- Participants (`participants` / number)
 - Community Notes (`community_notes` / textarea)
 
-## Operational Workflow
-1. Open event
-2. Invite community
-3. Run activity
-4. Archive insights
-
-## API
-- `GET /api/health`
-- `GET /api/schema`
-- `GET /api/records`
-- `POST /api/records`
-- `GET /api/metrics`
-
-## Run Locally
+## Quick Start
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python app.py
+python run.py
 ```
 
-## Docker Run
-```bash
-docker compose up --build
-```
+## API Highlights
+- `GET /api/health`
+- `GET /api/schema`
+- `GET /api/items`
+- `POST /api/items`
+- `PUT /api/items/<id>`
+- `DELETE /api/items/<id>`
+- `GET /api/metrics`
 
 ## Proof of Concept
 - [proof-of-concept.md](proof-of-concept.md)
 - [proof/demo-output.txt](proof/demo-output.txt)
 - [proof/ui-preview.svg](proof/ui-preview.svg)
+- [proof/architecture.md](proof/architecture.md)
